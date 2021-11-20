@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr" x-data="{ menuIsOpen: false }" :class="menuIsOpen && 'noscroll'">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site du Conservatoire de Belfort">
+
+    <title>Conservatoire Henri Dutilleux — Inscription</title>
+    
+    <link rel="stylesheet" href="src/css/style.css">
+    <script defer="" src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
+  </head>
+  <body x-data="{ atTop: true }">
+    <header class="header container" 
+            @scroll.window="atTop = ( window.scrollY > 100 ? false : true )"
+            :class="{ 'header--atTop' : !atTop }">
+
+      <div class="header__start">
+        <a href="/">
+          <img src="assets/icones/logo.svg" alt="logo du conservatoire Henri Dutilleux">
+        </a>
+      </div>
+
+      <div class="header__end" x-data="{ searchIsOpen: false }">
+        
+        <button class="header__search" @pointerdown="searchIsOpen = true">
+          <img src="assets/icones/icon_search.svg" alt="icone de recherche">
+        </button>
+
+        <div class="search-form" action="#" :class="searchIsOpen && 'search-form--open'">
+          <button class="search-form__close" @pointerdown="searchIsOpen = false">
+            <img src="assets/icones/icon_cross.svg" alt="icone croix">
+          </button>
+
+          <form class="search-form__form" action="#">
+            <label class="sr-only" for="search-form">Rechercher</label>
+            <input class="search-form__input" type="search" id="search-form" placeholder="Recherche…" value="">
+            <button class="search-form__submit">
+              <img src="assets/icones/icon_search.svg" alt="icone loupe">
+            </button>
+          </form>
+
+        </div>
+
+        <button class="header__menu-btn menu-btn"
+                @pointerdown="menuIsOpen = !menuIsOpen" 
+                :class="menuIsOpen && 'menu-btn--open'">
+          <span class="menu-btn__bar"></span>
+        </button>
+        <nav class="header__menu menu" :class="menuIsOpen && 'menu--open'">
+          <ul class="menu__list list-unstyled">
+            <li class="menu__item"><a class="menu__link" href="conservatoire.html">Le conservatoire</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Enseignements</a></li>
+            <li class="menu__item"><a class="menu__link" href="agenda.html">Agenda</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+            <li class="menu__item menu__item--btn"><a class="menu__link" href="inscription.html">S'inscrire</a></li>
+          </ul>
+        </nav>
+      </div>
+        
+    </header>
+
+    <main>
+      <div class="hero container">
+
+        <div class="hero__header">
+          <h1 class="hero__title">Inscription</h1>
+        </div>
+
+        <div class="hero__chapo chapo">
+          <p class="chapo__text">Les inscriptions sont ouvertes à partir de la journée portes ouvertes (mi-mai) jusqu'au 15 septembre.</p>
+        </div>
+
+        <div class="hero__img duotone"><img src="assets/img/page-inscription.webp" alt="crd"></div>
+      
+      </div>
+
+      <div class="container">
+
+        <h3>Musique</h3>
+        <ul>
+          <li>Jardin musique et danse : à partir de 4 ans</li>
+          <li>Eveil musical : avoir 6 ans et être inscrit en CP à la rentrée de septembre. 45 min par semaine</li>
+          <li>Instrument : à partir de 7 ans (dans l’année civile). 30 min de cours individuel d’instrument + 1h15 de formation musicale + 45 min de chorale par semaine</li>
+          <li>Chant et chant musiques actuelles : à partir de 15 ans sur test d’entrée en septembre</li>
+        </ul>
+        <h3>Danse contemporaine</h3>
+        <ul>
+          <li>Jardin musique et danse : à partir de 4 ans</li>
+          <li>Eveil artistique (5 ans) et initiation (6 ans) : 1 cours d’1h par semaine</li>
+          <li>A partir de 8 ans : 2 cours de danse d’1h par semaine + 1 cours de formation musicale d’1h par semaine</li>
+        </ul>
+        <h3>Théâtre</h3>
+        <ul>
+          <li>Eveil (8-11 ans) : Renseignements et inscriptions au théâtre Granit</li>
+          <li>A partir de 12 ans : inscriptions au conservatoire</li>
+          <li>De 12 à 14 ans : 1 cours de 2h par semaine</li>
+          <li>A partir de 15 ans et en fonction de la pratique théâtrale antérieure : 1 cours de 3h par semaine.</li>
+        </ul>
+  
+        <a class="download" href="#">
+          Livret d’information du conservatoire
+          <img class="download__icon" src="assets/icones/icon_download.svg" alt="Icone download">
+        </a>
+        <a class="download" href="#">
+          Demande de location d’instrument
+          <img class="download__icon" src="assets/icones/icon_download.svg" alt="Icone download">
+        </a>
+
+      </div>
+      
+      <form class="form container" action="#">
+        <h2 class="form__title">Pré-inscription</h2>
+        <p class="form__intro">Pré-inscriptions au Conservatoire à Rayonnement Départemental de Belfort pour l'année scolaire 2020-2021</p>
+        <p class="form__input">
+          <label for="firstname">Prénom<br>
+            <input type="text" id="firstname" name="first-name" value="">
+          </label>
+        </p>
+        <p class="form__input">
+          <label for="lastname">Nom<br>
+            <input type="text" id="lastname" name="last-name" value="">
+          </label>
+        </p>
+        <p class="form__input">
+          <label for="firstname">Email<br>
+            <input type="email" id="email" name="email" value="">
+          </label>
+        </p>
+        <p class="form__input">
+          <label for="birthday">Date de naissance<br>
+            <input type="date" id="birthday" name="birthday" value="">
+          </label>
+        </p>
+        <p class="form__input">
+          <label for="address">Adresse<br>
+            <input type="text" id="address" name="address" value="">
+          </label>
+        </p>
+        <p class="form__input">
+          <label for="school">Établissement scolaire et classe à la rentrée<br>
+            <input type="text" id="school" name="school" value="">
+          </label>
+        </p>
+        <p class="form__select">
+          <label for="activity">Activité souhaitée<br>
+            <select id="activity" name="activity">
+              <option value="">---</option>
+              <option value="musique">musique</option>
+              <option value="danse">danse</option>
+              <option value="théâtre">théâtre</option>
+            </select>
+          </label>
+        </p>
+        <p>
+          <button class="btn btn--dark" type="submit">Se pré-inscrire</button>
+        </p>
+      </form>
+    </main>
+
+    <footer class="footer container">
+
+      <img class="footer__logo" src="assets/icones/icon_logoFooter.svg" alt="Logo du Conservatoire de Belfort">
+  
+      <nav class="footer__menu">
+        <h3 class="footer__title">Menu</h3>
+        <ul class="list-unstyled">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Archives</a></li>
+          <li><a href="#">Contact et accès</a></li>
+        </ul>
+      </nav>
+  
+      <div class="footer__contact">
+        <h3 class="footer__title">Contact</h3>
+        <address class="footer__address">1 rue Paul Koepfler<br>90000 Belfort<br>
+          <a href="tel:0384542727">03 84 54 27 27</a><br>
+          <a href="mailto:conservatoire@agglo-belfort.fr">conservatoire@agglo-belfort.fr</a>
+        </address>
+      </div>
+  
+      <div class="footer__social">
+        <h3 class="footer__title">Nous suivre</h3>
+        <ul class="footer__list list-unstyled">
+          <li><a href="https://facebook.com"><i class="iconFacebook"></i></a></li>
+          <li><a href="https://instagram.com"><i class="iconInstagram"></i></a></li>
+          <li><a href="https://twitter.com"><i class="iconTwitter"></i></a></li>
+          <li><a href="https://youtube.com"><i class="iconYoutube"></i></a></li>
+        </ul>
+      </div>
+  
+      <img class="footer__gb" src="assets/icones/logo-grand-belfort.svg" alt="Logo du Grand Belfort">
+  
+    </footer>
+
+  </body>
+</html>

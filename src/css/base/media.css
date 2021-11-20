@@ -1,0 +1,39 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+}
+
+/* Pour produire l'effet duotone sur les images */
+
+.duotone {
+  background-color: var(--brand-saumon);
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.duotone::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: var(--brand-violet);
+  z-index: 1;
+  mix-blend-mode: lighten;
+}
+
+.duotone img {
+  filter: grayscale(100%);
+  display: block;
+  mix-blend-mode: multiply;
+  object-fit: cover;
+}

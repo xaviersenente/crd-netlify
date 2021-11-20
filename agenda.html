@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr" x-data="{ menuIsOpen: false }" :class="menuIsOpen && 'noscroll'">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site du Conservatoire de Belfort">
+
+    <title>Conservatoire Henri Dutilleux — Agenda</title>
+    
+    <link rel="stylesheet" href="src/css/style.css">
+    <script defer="" src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
+  </head>
+  <body x-data="{ atTop: true }">
+    <header class="header container" 
+            @scroll.window="atTop = ( window.scrollY > 100 ? false : true )"
+            :class="{ 'header--atTop' : !atTop }">
+
+      <div class="header__start">
+        <a href="/">
+          <img src="assets/icones/logo.svg" alt="logo du conservatoire Henri Dutilleux">
+        </a>
+      </div>
+
+      <div class="header__end" x-data="{ searchIsOpen: false }">
+        
+        <button class="header__search" @pointerdown="searchIsOpen = true">
+          <img src="assets/icones/icon_search.svg" alt="icone de recherche">
+        </button>
+
+        <div class="search-form" action="#" :class="searchIsOpen && 'search-form--open'">
+          <button class="search-form__close" @pointerdown="searchIsOpen = false">
+            <img src="assets/icones/icon_cross.svg" alt="icone croix">
+          </button>
+
+          <form class="search-form__form" action="#">
+            <label class="sr-only" for="search-form">Rechercher</label>
+            <input class="search-form__input" type="search" id="search-form" placeholder="Recherche…" value="">
+            <button class="search-form__submit">
+              <img src="assets/icones/icon_search.svg" alt="icone loupe">
+            </button>
+          </form>
+
+        </div>
+
+        <button class="header__menu-btn menu-btn"
+                @pointerdown="menuIsOpen = !menuIsOpen" 
+                :class="menuIsOpen && 'menu-btn--open'">
+          <span class="menu-btn__bar"></span>
+        </button>
+        <nav class="header__menu menu" :class="menuIsOpen && 'menu--open'">
+          <ul class="menu__list list-unstyled">
+            <li class="menu__item"><a class="menu__link" href="conservatoire.html">Le conservatoire</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Enseignements</a></li>
+            <li class="menu__item"><a class="menu__link" href="agenda.html">Agenda</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+            <li class="menu__item menu__item--btn"><a class="menu__link" href="inscription.html">S'inscrire</a></li>
+          </ul>
+        </nav>
+      </div>
+        
+    </header>
+
+    <main>
+      <div class="hero container">
+
+        <div class="hero__header">
+          <h1 class="hero__title">Agenda</h1>
+        </div>
+
+        <div class="hero__chapo chapo">
+          <p class="chapo__text">Lieu de création artistique, le conservatoire propose régulièrement des actions culturelles ouvertes à tous.</p>
+        </div>
+
+        <div class="hero__img duotone"><img src="assets/img/agenda-01.webp" alt="Orchestre"></div>
+      
+      </div>
+
+     <div class="container"
+          x-data="{ 'cards' : async ()=> {
+            const resp = await fetch('/src/data/agenda.json');
+            return await resp.json();
+          }}">
+
+      <template x-for="card in cards" :key="card.id">
+
+        <article class="section__card card">
+          <div class="card__img duotone">
+            <img :src="card.picture" :alt="card.picture_desc">
+          </div>
+          <h3 class="card__title">
+            <a class="card__title-link" :href="card.link" x-text="card.title"></a>
+          </h3>
+          <div class="card__caption">
+            <p class="card__date" x-text="card.date"></p>
+            <p class="card__excerpt" x-text="card.excerpt"></p>
+            <a class="card__link morelink" :href="card.link">Plus d'info</a>
+          </div>
+        </article>
+
+      </template>
+        
+     </div>
+
+    </main>
+
+    <footer class="footer container">
+
+      <img class="footer__logo" src="assets/icones/icon_logoFooter.svg" alt="Logo du Conservatoire de Belfort">
+  
+      <nav class="footer__menu">
+        <h3 class="footer__title">Menu</h3>
+        <ul class="list-unstyled">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Archives</a></li>
+          <li><a href="#">Contact et accès</a></li>
+        </ul>
+      </nav>
+  
+      <div class="footer__contact">
+        <h3 class="footer__title">Contact</h3>
+        <address class="footer__address">1 rue Paul Koepfler<br>90000 Belfort<br>
+          <a href="tel:0384542727">03 84 54 27 27</a><br>
+          <a href="mailto:conservatoire@agglo-belfort.fr">conservatoire@agglo-belfort.fr</a>
+        </address>
+      </div>
+  
+      <div class="footer__social">
+        <h3 class="footer__title">Nous suivre</h3>
+        <ul class="footer__list list-unstyled">
+          <li><a href="https://facebook.com"><i class="iconFacebook"></i></a></li>
+          <li><a href="https://instagram.com"><i class="iconInstagram"></i></a></li>
+          <li><a href="https://twitter.com"><i class="iconTwitter"></i></a></li>
+          <li><a href="https://youtube.com"><i class="iconYoutube"></i></a></li>
+        </ul>
+      </div>
+  
+      <img class="footer__gb" src="assets/icones/logo-grand-belfort.svg" alt="Logo du Grand Belfort">
+  
+    </footer>
+
+  </body>
+</html>
